@@ -42,11 +42,48 @@ z_scores = function(x) {
 ```
 
 ```{rmultiple outputs}
+mean_and_sd = function(x) {
+  
+  if (!is.numeric(x)) {
+    stop("Argument x should be numeric")
+  } else if (length(x) == 1) {
+    stop("Cannot be computed for length 1 vectors")
+  }
+  
+  mean_x = mean(x)
+  sd_x = sd(x)
 
+  list(mean = mean_x, 
+       sd = sd_x)
+}
 ```
 
 ```{r multiple inputs}
+sim_data = tibble(
+  x = rnorm(30, mean = 2, sd = 3)
+)
 
+sim_data %>% 
+  summarize(
+    mu_hat = mean(x),
+    sigma_hat = sd(x)
+  )
+
+sim_mean_sd = function(n, mu = 2, sigma = 3) {
+  
+  sim_data = tibble(
+    x = rnorm(n, mean = mu, sd = sigma),
+  )
+  
+  sim_data %>% 
+    summarize(
+      mu_hat = mean(x),
+      sigma_hat = sd(x)
+    )
+}
+
+# test the function 
+sim_mean_sd(n = 30, mu = 5, sd = 1) 
 ```
 
 ```{r amazon case}
