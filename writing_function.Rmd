@@ -9,7 +9,7 @@ library(rvest)
 set.seed(1)
 ```
 
-```{r}
+```{r basic function}
 z_scores = function(x) {
   
   z = (x - mean(x)) / sd(x)
@@ -25,8 +25,34 @@ x_vec = rnorm(25, mean = 5, sd = 3)
 z_scores(x_vec)
 ```
 
-```{r}
+```{r conditional function}
+z_scores = function(x) {
+  
+  if (!is.numeric(x)) {
+    stop("Argument x should be numeric")
+  } else if (length(x) == 1) {
+    stop("Z scores cannot be computed for length 1 vectors")
+  }
+  
+  z = mean(x) / sd(x)
+  
+  z
+}
 
 ```
+
+```{rmultiple outputs}
+
+```
+
+```{r multiple inputs}
+
+```
+
+```{r amazon case}
+
+```
+
+
 
 
